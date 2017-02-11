@@ -1,0 +1,23 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  <ul class="post-list">
+    {% for post in site.posts %}
+      <li>
+          <div class="container">
+              <div class="row">
+                  <h4 class="media-heading"><a class="post-link" href={{ post.url | prepend: site.baseurl }}>{{ post.title }}</a></h4>
+                  <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+                  <a href={{ post.url | prepend: site.baseurl }}>
+                      <img class="cover_image" src={{ post.gif | prepend: site.baseurl }} alt={{ post.title }} width="100%"/>
+                  </a>
+              </div>
+          </div>
+      </li>
+    {% endfor %}
+  </ul>
+
+</div>

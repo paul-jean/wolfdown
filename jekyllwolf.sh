@@ -43,7 +43,7 @@ else
 fi
 
 # export the notebook to html using the WolframScript interpreter:
-ht_file=`$script_dir/export_nb_to_static_site.wolframscript $nb_file $jekyll_dir $device_width`
+ht_file=`$script_dir/export_nb_to_static_site.wolframscript $nb_file $jekyll_dir $device_width "$post_title"`
 
 echo $md_post_file
 

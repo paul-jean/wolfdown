@@ -7,7 +7,7 @@ jekyllDir = args[[2]];
 screenWidth = FromDigits@args[[3]];
 postTitle = args[[4]];
 
-Get["export-refactor-functions.m"];
+Get["functions.m"];
 
 exportedHTMLFile = UsingFrontEnd@exportNotebook[nbFile, jekyllDir, screenWidth, postTitle];
 
