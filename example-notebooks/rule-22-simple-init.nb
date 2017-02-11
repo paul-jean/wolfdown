@@ -1,0 +1,92 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      2226,         82]
+NotebookOptionsPosition[      1795,         61]
+NotebookOutlinePosition[      2152,         77]
+CellTagsIndexPosition[      2109,         74]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["jekyll and wolf: part 1", "Section",
+ CellChangeTimes->{{3.6935288142294893`*^9, 3.693528851684966*^9}}],
+
+Cell["\<\
+This is elementary cellular automaton rule 22 from a single black cell \
+initial condition:\
+\>", "Text",
+ CellChangeTimes->{{3.6935289051474657`*^9, 3.693528934618403*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ArrayPlot", "[", 
+  RowBox[{"CellularAutomaton", "[", 
+   RowBox[{"22", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", "1", "}"}], ",", "0"}], "}"}], ",", "20"}], "]"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.6935288568904457`*^9, 3.6935288936002398`*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[RasterBox[CompressedData["
+1:eJyNkcsNwCAMQ5Pu0AE4dp2OwALd/wZVRcnPgUhRDjbWkyn1uetBRGffqy/x
+N+Pamfrrnf7A+evEOI+VnuVpPfdJfXCg9RxoPQe6ngNdnSnf434tD+7Xvsf9
+Iu44M+4Pca7+P+sPca58WX9R5o5vh09mumkd/QS8
+   "], {{0, 0}, {41, 21}}, {0, 1}],
+  Frame->Automatic,
+  FrameLabel->{None, None},
+  FrameTicks->{{None, None}, {None, None}},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  Method->{
+   "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> 
+    Automatic}]], "Output",
+ CellChangeTimes->{{3.693528879707885*^9, 3.693528894821167*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 110, 1, 64, "Section"],
+Cell[693, 25, 183, 4, 30, "Text"],
+Cell[CellGroupData[{
+Cell[901, 33, 293, 8, 32, "Input"],
+Cell[1197, 43, 570, 14, 207, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

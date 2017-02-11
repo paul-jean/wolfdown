@@ -1,0 +1,97 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      2649,         87]
+NotebookOptionsPosition[      2216,         66]
+NotebookOutlinePosition[      2575,         82]
+CellTagsIndexPosition[      2532,         79]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["jekyll and wolf: part 2", "Section",
+ CellChangeTimes->{{3.6935290073497343`*^9, 3.693529014082934*^9}}],
+
+Cell["\<\
+In part 2, we see how rule 22 elementary cellular automaton looks from a \
+random initial condition:\
+\>", "Text",
+ CellChangeTimes->{{3.6935290172634077`*^9, 3.6935290378042316`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ArrayPlot", "@", 
+  RowBox[{"CellularAutomaton", "[", 
+   RowBox[{"22", ",", 
+    RowBox[{"RandomInteger", "[", 
+     RowBox[{"1", ",", "50"}], "]"}], ",", "50"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.693529039918425*^9, 3.6935290653155327`*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[RasterBox[CompressedData["
+1:eJxtlNt1wzAMQ6FskhXaTTJCFsj+f3Udkbwg5XNsWab5AAjx+f683g9Jv9f9
+c91a/5eW7qddyiV+u9+v3br3+RUuipCqTxl/ZMiQ4fy9w2nnmS6C82IpOmXY
+hh195e9RqzLx904Q5ERZ6m2jWQBBTpQARFMQxMgoc9djptxqchIJivrIQhAD
+Ynh5JKPHGMgeeXKvsPO7uVJoJraotFZBhKUZFMoOZvLiqm8rTrvkL9iyfssm
+zx0sWv1FtUvE7F0fhYNfzN5a5L4NXT9JjGe+6Eevv35z3zEjJltWymlGdLb8
+Os6IeW6b9TCFWqZhHedhZOpZljM0cCSfGaTXPHAkn6b6vtr5wPBonSZbVjWG
+xyHqmaE+SwYrB321WTKitvOxEoe4H1kSh4DD9iMLfAtHqZHqHxonjmKP6j+c
+D5CQEal+zNzAy6zedcvKJa/Iw2lUTBGvAEep+zTFG/GiLcV8mbQWyy9QEdEU
+Wm6QSygdww0FkB0crvjZBjL07W2OBDagqdAAnmtV03SPPiWJLseK0Dq7QKLL
+sSKgmcUiSSnCqiHlC6b3o/qXTtbMbfoDz78IvA==
+   "], {{0, 0}, {50, 51}}, {0, 1}],
+  Frame->Automatic,
+  FrameLabel->{None, None},
+  FrameTicks->{{None, None}, {None, None}},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  Method->{
+   "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> 
+    Automatic}]], "Output",
+ CellChangeTimes->{{3.6935290599483433`*^9, 3.693529065763221*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{12, Automatic}, {Automatic, 24}},
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 110, 1, 64, "Section"],
+Cell[693, 25, 194, 4, 30, "Text"],
+Cell[CellGroupData[{
+Cell[912, 33, 274, 6, 32, "Input"],
+Cell[1189, 41, 999, 21, 381, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

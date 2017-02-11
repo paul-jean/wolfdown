@@ -1,0 +1,17 @@
+#!/usr/local/bin/wolframscript
+
+args = $ScriptCommandLine[[2;;]];
+
+nbFile = args[[1]];
+jekyllDir = args[[2]];
+screenWidth = FromDigits@args[[3]];
+postTitle = args[[4]];
+
+Get["export-refactor-functions.m"];
+
+exportedHTMLFile = UsingFrontEnd@exportNotebook[nbFile, jekyllDir, screenWidth, postTitle];
+
+Print[exportedHTMLFile];
+
+Exit[0];
+
