@@ -1,0 +1,90 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      2572,         82]
+NotebookOptionsPosition[      2171,         63]
+NotebookOutlinePosition[      2531,         79]
+CellTagsIndexPosition[      2488,         76]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"Get", "[", 
+  RowBox[{"FileNameJoin", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<functions.m\>\""}], 
+    "}"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6958635599315557`*^9, 3.6958635837430353`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"exportNotebook", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+      "\"\<example-notebooks\>\"", ",", "\"\<eg-notebook.nb\>\""}], "}"}], 
+    "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<export-test\>\""}], 
+     "}"}], "]"}], ",", "\[IndentingNewLine]", "500", ",", 
+   "\[IndentingNewLine]", "\"\<example nb\>\""}], "\[IndentingNewLine]", 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.6958636276518784`*^9, 3.695863632479176*^9}, {
+  3.6958636803500423`*^9, 3.695863792798946*^9}, {3.695864274243739*^9, 
+  3.695864279119865*^9}}],
+
+Cell[BoxData["\<\"/Users/rule146/code/jekyllwolf/example-notebooks/eg-\
+notebook.nb\"\>"], "Print",
+ CellChangeTimes->{{3.69586416095435*^9, 3.6958641839357233`*^9}, 
+   3.695864247552928*^9, 3.695864280500877*^9, 3.6958646328320208`*^9}],
+
+Cell[BoxData["\<\"/Users/rule146/code/jekyllwolf/export-test/_posts/2017-02-\
+12-eg-notebook.md\"\>"], "Output",
+ CellChangeTimes->{
+  3.6958637973732777`*^9, {3.695864160987687*^9, 3.695864183979228*^9}, 
+   3.695864247609343*^9, 3.6958642819971*^9, 3.6958646332739*^9}]
+}, Open  ]]
+},
+WindowSize->{808, 759},
+WindowMargins->{{Automatic, 302}, {Automatic, 10}},
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 279, 7, 32, "Input"],
+Cell[CellGroupData[{
+Cell[862, 31, 778, 18, 138, "Input"],
+Cell[1643, 51, 238, 3, 24, "Print"],
+Cell[1884, 56, 271, 4, 32, "Output"]
+}, Open  ]]
+}
+]
+*)
+

@@ -1,13 +1,17 @@
-#!/bin/sh -x
+#!/bin/sh
 
 dir=`pwd`
 test_dir="export-test"
 
-# create a tests jekyll blog
+echo "creating test blog under $test_dir ..."
 cp -R ./example-blog ./$test_dir
-./jekyllwolf.sh $dir/example-notebooks/eg-notebook.nb $dir/$test_dir/ 400 "An example notebook"
 
-# build and serve the jekyll site
+for nb in `ls -1 example-notebooks/*.nb`; do
+    echo "exporting $nb ..."
+    ./jekyllwolf.sh $dir/$nb $dir/$test_dir/ 500
+done
+
+echo "building the jekyll site ..."
 cd $test_dir
 jekyll build
 jekyll serve

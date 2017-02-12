@@ -1,4 +1,4 @@
-#! /bin/sh -x
+#! /bin/sh
 # Exports a Wolfram Language notebook (.nb) to a markdown document within a Jekyll site.
 # Usage:
 # jekyllwolf.sh nb_file jekyll_dir [device_width] [post_title]
@@ -43,7 +43,7 @@ else
 fi
 
 # export the notebook to html using the WolframScript interpreter:
-ht_file=`$script_dir/export_nb_to_static_site.wolframscript $nb_file $jekyll_dir $device_width "$post_title"`
+md_post_file=`$script_dir/export_nb_to_static_site.wolframscript $nb_file $jekyll_dir $device_width "$post_title"`
 
 echo $md_post_file
 

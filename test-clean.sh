@@ -1,6 +1,6 @@
 #!/bin/sh
 
-test_dir="tests/export-test"
+test_dir="export-test"
 
 rm -rf $test_dir
 
