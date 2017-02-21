@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      2572,         82]
-NotebookOptionsPosition[      2171,         63]
-NotebookOutlinePosition[      2531,         79]
-CellTagsIndexPosition[      2488,         76]
+NotebookDataLength[      4304,        127]
+NotebookOptionsPosition[      3684,        100]
+NotebookOutlinePosition[      4044,        116]
+CellTagsIndexPosition[      4001,        113]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -59,10 +59,47 @@ Cell[BoxData["\<\"/Users/rule146/code/jekyllwolf/export-test/_posts/2017-02-\
  CellChangeTimes->{
   3.6958637973732777`*^9, {3.695864160987687*^9, 3.695864183979228*^9}, 
    3.695864247609343*^9, 3.6958642819971*^9, 3.6958646332739*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"exportNotebook", "[", "\[IndentingNewLine]", 
+  RowBox[{
+  "\"\</Users/rule146/Dropbox/babynames/babynames-02-combine-phonemes.nb\>\"",
+    ",", "\[IndentingNewLine]", "\"\</Users/rule146/code/test-blog\>\"", ",", 
+   "\[IndentingNewLine]", "400", ",", "\[IndentingNewLine]", 
+   "\"\<babynames 02 combine phonemes\>\""}], "\[IndentingNewLine]", 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.696587645150737*^9, 3.6965876602057962`*^9}, {
+  3.696587737779668*^9, 3.696587754197691*^9}}],
+
+Cell[BoxData["\<\"/Users/rule146/code/test-blog/_posts/2017-02-20-babynames-\
+02-combine-phonemes.md\"\>"], "Output",
+ CellChangeTimes->{3.696587768101252*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"exportNotebook", "[", "\[IndentingNewLine]", 
+  RowBox[{
+  "\"\</Users/rule146/Dropbox/babynames/babynames-02-combine-phonemes.nb\>\"",
+    ",", "\[IndentingNewLine]", "\"\</Users/rule146/code/babynames-blog\>\"", 
+   ",", "\[IndentingNewLine]", "400", ",", "\[IndentingNewLine]", 
+   "\"\<second try: babynames 02 combine phonemes\>\""}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.696587645150737*^9, 3.6965876602057962`*^9}, {
+   3.696587737779668*^9, 3.696587754197691*^9}, 3.6965878989424467`*^9, {
+   3.6965880115673037`*^9, 3.6965880418367167`*^9}}],
+
+Cell[BoxData["\<\"/Users/rule146/code/babynames-blog/_posts/2017-02-20-\
+babynames-02-combine-phonemes.md\"\>"], "Output",
+ CellChangeTimes->{3.6965880597056837`*^9}]
 }, Open  ]]
 },
 WindowSize->{808, 759},
-WindowMargins->{{Automatic, 302}, {Automatic, 10}},
+WindowMargins->{{312, Automatic}, {41, Automatic}},
 FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
 21, 2016)",
 StyleDefinitions->"Default.nb"
@@ -83,6 +120,14 @@ Cell[CellGroupData[{
 Cell[862, 31, 778, 18, 138, "Input"],
 Cell[1643, 51, 238, 3, 24, "Print"],
 Cell[1884, 56, 271, 4, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2192, 65, 506, 9, 138, "Input"],
+Cell[2701, 76, 159, 2, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2897, 83, 602, 10, 138, "Input"],
+Cell[3502, 95, 166, 2, 32, "Output"]
 }, Open  ]]
 }
 ]

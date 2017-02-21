@@ -1,0 +1,552 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     23244,        544]
+NotebookOptionsPosition[     22408,        512]
+NotebookOutlinePosition[     22767,        528]
+CellTagsIndexPosition[     22724,        525]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"imageName", "[", 
+   RowBox[{"cellIndex_Integer", ",", "nbBasename_String"}], "]"}], ":=", 
+  RowBox[{"nbBasename", "<>", "\"\<_\>\"", "<>", 
+   RowBox[{"IntegerString", "@", "cellIndex"}], "<>", 
+   "\"\<.gif\>\""}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.695337750075843*^9, 3.695337781507297*^9}, {
+  3.695340152894212*^9, 3.69534015460996*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"exportCell", "[", 
+   RowBox[{
+    RowBox[{"cell", ":", 
+     RowBox[{"Cell", "[", 
+      RowBox[{"_", ",", 
+       RowBox[{"\"\<Input\>\"", "|", "\"\<Output\>\""}], ",", "__"}], "]"}]}],
+     ",", "cellIndex_Integer", ",", "pageWidth_Integer", ",", 
+    "nbBasename_String", ",", "jekyllDir_String", ",", "imageDir_String", ",",
+     "mdFileHandle_OutputStream"}], "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "imageFilename", ",", "relativeImageDir", ",", "imageFilenameWithPath", 
+      ",", "mdImageStr"}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"imageFilename", "=", 
+      RowBox[{"imageName", "[", 
+       RowBox[{"cellIndex", ",", "nbBasename"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"relativeImageDir", "=", 
+      RowBox[{"FileNameJoin", "[", 
+       RowBox[{"{", 
+        RowBox[{
+        "\"\<..\>\"", ",", "\"\<..\>\"", ",", "\"\<..\>\"", ",", "imageDir", 
+         ",", "imageFilename"}], "}"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"imageFilenameWithPath", "=", 
+      RowBox[{"FileNameJoin", "[", 
+       RowBox[{"{", 
+        RowBox[{"jekyllDir", ",", "imageDir", ",", "imageFilename"}], "}"}], 
+       "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Export", "[", 
+      RowBox[{"imageFilenameWithPath", ",", 
+       RowBox[{"Append", "[", 
+        RowBox[{"cell", ",", 
+         RowBox[{"PageWidth", "\[Rule]", "pageWidth"}]}], "]"}]}], "]"}], ";",
+      "\[IndentingNewLine]", 
+     RowBox[{"mdImageStr", "=", 
+      RowBox[{
+      "\"\<![\>\"", "<>", "imageFilename", "<>", "\"\<](\>\"", "<>", 
+       "relativeImageDir", "<>", "\"\<)\>\""}]}], ";", "\[IndentingNewLine]", 
+     
+     RowBox[{"WriteString", "[", 
+      RowBox[{"mdFileHandle", ",", "\"\<\\n\>\""}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"WriteString", "[", 
+      RowBox[{"mdFileHandle", ",", "\"\<\\n\>\""}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"WriteString", "[", 
+      RowBox[{"mdFileHandle", ",", "mdImageStr"}], "]"}], ";"}]}], 
+   "\[IndentingNewLine]", "]"}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.69525190232656*^9, 3.695251975098914*^9}, {
+   3.695252214096395*^9, 3.6952522736002417`*^9}, {3.695252312254532*^9, 
+   3.6952524264681273`*^9}, {3.695252681271925*^9, 3.695252713949662*^9}, {
+   3.6952528505733347`*^9, 3.6952528823724327`*^9}, {3.695252960509962*^9, 
+   3.695252974325263*^9}, {3.6952530103078623`*^9, 3.6952530136586657`*^9}, {
+   3.695253072246396*^9, 3.6952530724134293`*^9}, {3.69525310636238*^9, 
+   3.695253172571299*^9}, {3.6952532182919807`*^9, 3.695253333124364*^9}, 
+   3.695253380340527*^9, {3.695253497327669*^9, 3.69525352705512*^9}, {
+   3.695253573713245*^9, 3.695253595494182*^9}, {3.695253801809359*^9, 
+   3.6952538088784857`*^9}, {3.695253845756266*^9, 3.695253851467803*^9}, {
+   3.6952539533865356`*^9, 3.695254054264032*^9}, {3.6952541359943733`*^9, 
+   3.695254140097807*^9}, {3.695254235109445*^9, 3.695254236387002*^9}, 
+   3.69525437409552*^9, {3.695254591009328*^9, 3.6952546845046663`*^9}, {
+   3.695254714978219*^9, 3.695254725565036*^9}, {3.695255071945099*^9, 
+   3.6952551195952682`*^9}, {3.6952556086194973`*^9, 3.695255613045858*^9}, {
+   3.695255711774206*^9, 3.695255718830131*^9}, {3.6952558698389482`*^9, 
+   3.6952558699664*^9}, {3.695335383881089*^9, 3.69533539231942*^9}, {
+   3.6953354236667423`*^9, 3.6953355360913363`*^9}, {3.695335584277301*^9, 
+   3.695335689379842*^9}, {3.695335721413302*^9, 3.695335742749762*^9}, {
+   3.695337090401967*^9, 3.6953371282861137`*^9}, {3.6953377880829287`*^9, 
+   3.69533780129924*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"exportCell", "[", 
+   RowBox[{
+    RowBox[{"cell", ":", 
+     RowBox[{"Cell", "[", 
+      RowBox[{"text_String", ",", "\"\<Text\>\"", ",", "__"}], "]"}]}], ",", 
+    "cellIndex_Integer", ",", "pageWidth_Integer", ",", "nbBasename_String", 
+    ",", "jekyllDir_String", ",", "imageDir_String", ",", 
+    "mdFileHandle_OutputStream"}], "]"}], ":=", 
+  RowBox[{"WriteString", "[", 
+   RowBox[{"mdFileHandle", ",", 
+    RowBox[{"\"\<\\n\\n\>\"", "<>", "text"}]}], "]"}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.69525190232656*^9, 3.695251975098914*^9}, {
+   3.695252214096395*^9, 3.6952522736002417`*^9}, {3.695252312254532*^9, 
+   3.695252447385571*^9}, {3.695252488212121*^9, 3.69525256278382*^9}, {
+   3.6952530245391083`*^9, 3.69525303003196*^9}, {3.695254145498476*^9, 
+   3.695254148291874*^9}, {3.695254240484371*^9, 3.695254241205153*^9}, {
+   3.695254739322356*^9, 3.69525475838597*^9}, {3.695255133897843*^9, 
+   3.695255166405258*^9}, {3.69525561959312*^9, 3.6952556216439*^9}, {
+   3.695255730254537*^9, 3.695255732994689*^9}, {3.695255875376677*^9, 
+   3.695255875440856*^9}, 3.695335819749961*^9, 3.6953371397172127`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"exportCell", "[", 
+   RowBox[{
+    RowBox[{"cell", ":", 
+     RowBox[{"Cell", "[", 
+      RowBox[{"text_String", ",", "\"\<Section\>\"", ",", "__"}], "]"}]}], 
+    ",", "cellIndex_Integer", ",", "pageWidth_Integer", ",", 
+    "nbBasename_String", ",", "jekyllDir_String", ",", "imageDir_String", ",",
+     "mdFileHandle_OutputStream"}], "]"}], ":=", 
+  RowBox[{"WriteString", "[", 
+   RowBox[{"mdFileHandle", ",", 
+    RowBox[{"\"\<\\n\\n\>\"", "<>", "\"\<# \>\"", "<>", "text"}]}], 
+   "]"}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.69525190232656*^9, 3.695251975098914*^9}, {
+   3.695252214096395*^9, 3.6952522736002417`*^9}, {3.695252312254532*^9, 
+   3.695252447385571*^9}, {3.695252488212121*^9, 3.6952526185525017`*^9}, {
+   3.695253033622098*^9, 3.695253037536384*^9}, {3.6952541526923103`*^9, 
+   3.69525415567212*^9}, {3.6952542454075003`*^9, 3.6952542460844173`*^9}, {
+   3.695255178844488*^9, 3.695255212541395*^9}, {3.695255627516885*^9, 
+   3.695255629899723*^9}, 3.695255740339357*^9, {3.6952558792945137`*^9, 
+   3.695255879334483*^9}, 3.695335826512224*^9, 3.695337144039014*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"exportCell", "[", 
+   RowBox[{
+    RowBox[{"cell", ":", 
+     RowBox[{"Cell", "[", 
+      RowBox[{"text_String", ",", "\"\<Subsection\>\"", ",", "__"}], "]"}]}], 
+    ",", "cellIndex_Integer", ",", "pageWidth_Integer", ",", 
+    "nbBasename_String", ",", "jekyllDir_String", ",", "imageDir_String", ",",
+     "mdFileHandle_OutputStream"}], "]"}], ":=", 
+  RowBox[{"WriteString", "[", 
+   RowBox[{"mdFileHandle", ",", 
+    RowBox[{"\"\<\\n\\n\>\"", "<>", "\"\<## \>\"", "<>", "text"}]}], 
+   "]"}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.69525190232656*^9, 3.695251975098914*^9}, {
+   3.695252214096395*^9, 3.6952522736002417`*^9}, {3.695252312254532*^9, 
+   3.695252447385571*^9}, {3.695252488212121*^9, 3.6952526333713293`*^9}, {
+   3.695253045470854*^9, 3.695253048972118*^9}, {3.695254170239623*^9, 
+   3.695254174092722*^9}, 3.695254250411581*^9, {3.695255179850634*^9, 
+   3.695255216499422*^9}, {3.695255635219839*^9, 3.6952556379766207`*^9}, 
+   3.6952557443930798`*^9, {3.6952558819350233`*^9, 3.6952558820183487`*^9}, 
+   3.695335831979347*^9, 3.6953371487930326`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"exportCell", "[", 
+   RowBox[{
+    RowBox[{"cell", ":", 
+     RowBox[{"Cell", "[", 
+      RowBox[{"text_String", ",", "\"\<Subsubsection\>\"", ",", "__"}], 
+      "]"}]}], ",", "cellIndex_Integer", ",", "pageWidth_Integer", ",", 
+    "nbBasename_String", ",", "jekyllDir_String", ",", "imageDir_String", ",",
+     "mdFileHandle_OutputStream"}], "]"}], ":=", 
+  RowBox[{"WriteString", "[", 
+   RowBox[{"mdFileHandle", ",", 
+    RowBox[{"\"\<\\n\\n\>\"", "<>", "\"\<### \>\"", "<>", "text"}]}], 
+   "]"}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.69525190232656*^9, 3.695251975098914*^9}, {
+   3.695252214096395*^9, 3.6952522736002417`*^9}, {3.695252312254532*^9, 
+   3.695252447385571*^9}, {3.695252488212121*^9, 3.69525264294691*^9}, {
+   3.69525305493043*^9, 3.6952530580276737`*^9}, {3.695254178507815*^9, 
+   3.695254181807823*^9}, 3.695254252980831*^9, {3.695255181244678*^9, 
+   3.695255218758778*^9}, {3.695255644092833*^9, 3.6952556461974697`*^9}, 
+   3.695255748091814*^9, {3.695255884423498*^9, 3.695255884584406*^9}, 
+   3.695335837312839*^9, 3.6953371518870707`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"exportNotebook", "[", 
+   RowBox[{
+   "nbFile_String", ",", "jekyllDir_String", ",", "screenWidth_Integer", ",", 
+    "postTitle_String"}], "]"}], ":=", 
+  RowBox[{"Module", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "nbBasename", ",", "relativeImageDir", ",", "mdFileDir", ",", 
+      "mdFileTmp", ",", "nbObject", ",", "nbExpr", ",", "cells", ",", 
+      "numCells", ",", "fd", ",", "outputCellImageFiles", ",", 
+      "imageDimensions", ",", "numPixels", ",", "maxNumPixels", ",", 
+      "coverImageFile", ",", "coverImageRelativePath", ",", "mdFile", ",", 
+      "fdTmp", ",", "line"}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"nbBasename", "=", 
+      RowBox[{"FileBaseName", "@", "nbFile"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"relativeImageDir", "=", 
+      RowBox[{"FileNameJoin", "[", 
+       RowBox[{"{", 
+        RowBox[{"\"\<assets\>\"", ",", 
+         RowBox[{"DateString", "[", 
+          RowBox[{"{", "\"\<Year\>\"", "}"}], "]"}], ",", 
+         RowBox[{"DateString", "[", 
+          RowBox[{"{", "\"\<Month\>\"", "}"}], "]"}], ",", 
+         RowBox[{"DateString", "[", 
+          RowBox[{"{", "\"\<Day\>\"", "}"}], "]"}], ",", 
+         RowBox[{"nbBasename", "<>", "\"\<-\>\"", "<>", 
+          RowBox[{"IntegerString", "@", "screenWidth"}], "<>", 
+          "\"\<px\>\""}]}], "}"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"mdFileDir", "=", 
+      RowBox[{"FileNameJoin", "[", 
+       RowBox[{"{", 
+        RowBox[{"jekyllDir", ",", "\"\<_posts\>\""}], "}"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"mdFileTmp", "=", 
+      RowBox[{"FileNameJoin", "[", 
+       RowBox[{"{", 
+        RowBox[{"mdFileDir", ",", 
+         RowBox[{
+          RowBox[{"DateString", "[", 
+           RowBox[{"{", 
+            RowBox[{
+            "\"\<Year\>\"", ",", "\"\<-\>\"", ",", "\"\<Month\>\"", ",", 
+             "\"\<-\>\"", ",", "\"\<Day\>\"", ",", "\"\<-\>\"", ",", 
+             "nbBasename"}], "}"}], "]"}], "<>", "\"\<.md.tmp\>\""}]}], "}"}],
+        "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"!", 
+        RowBox[{"FileExistsQ", "[", "mdFileDir", "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"CreateDirectory", "@", "mdFileDir"}]}], "\[IndentingNewLine]",
+       "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"!", 
+        RowBox[{"FileExistsQ", "[", 
+         RowBox[{"FileNameJoin", "[", 
+          RowBox[{"{", 
+           RowBox[{"jekyllDir", ",", "relativeImageDir"}], "}"}], "]"}], 
+         "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"CreateDirectory", "[", 
+        RowBox[{"FileNameJoin", "[", 
+         RowBox[{"{", 
+          RowBox[{"jekyllDir", ",", "relativeImageDir"}], "}"}], "]"}], 
+        "]"}]}], "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"nbObject", "=", 
+      RowBox[{"NotebookOpen", "[", 
+       RowBox[{"nbFile", ",", 
+        RowBox[{"Visible", "\[Rule]", "False"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"nbExpr", "=", 
+      RowBox[{"NotebookGet", "[", "nbObject", "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"cells", "=", 
+      RowBox[{"Cases", "[", 
+       RowBox[{"nbExpr", ",", 
+        RowBox[{"Cell", "[", 
+         RowBox[{"_", ",", 
+          RowBox[{
+          "\"\<Input\>\"", "|", "\"\<Output\>\"", "|", "\"\<Text\>\"", "|", 
+           "\"\<Section\>\"", "|", "\"\<Subsection\>\"", "|", 
+           "\"\<Subsubsection\>\""}], ",", "__"}], "]"}], ",", "Infinity"}], 
+       "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"numCells", "=", 
+      RowBox[{"Length", "@", "cells"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Quiet", "[", 
+      RowBox[{"Close", "/@", 
+       RowBox[{"Streams", "[", "]"}]}], "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Put", "@", "mdFileTmp"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"fd", "=", 
+      RowBox[{"OpenAppend", "[", 
+       RowBox[{"mdFileTmp", ",", 
+        RowBox[{"PageWidth", "\[Rule]", "Infinity"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{"export", " ", "each", " ", "cell", " ", "to", " ", 
+       RowBox[{"the", " ", ".", "md"}], " ", "file", " ", "and", " ", "the", 
+       " ", "image", " ", 
+       RowBox[{"files", ":"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"MapIndexed", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"exportCell", "[", 
+         RowBox[{"#", ",", 
+          RowBox[{"#2", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], ",", "screenWidth", ",", 
+          "nbBasename", ",", "jekyllDir", ",", "relativeImageDir", ",", 
+          "fd"}], "]"}], "&"}], ",", "\[IndentingNewLine]", "cells"}], 
+      "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Close", "[", "fd", "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"mdFile", "=", 
+      RowBox[{"FileNameJoin", "[", 
+       RowBox[{"{", 
+        RowBox[{"mdFileDir", ",", 
+         RowBox[{
+          RowBox[{"DateString", "[", 
+           RowBox[{"{", 
+            RowBox[{
+            "\"\<Year\>\"", ",", "\"\<-\>\"", ",", "\"\<Month\>\"", ",", 
+             "\"\<-\>\"", ",", "\"\<Day\>\"", ",", "\"\<-\>\"", ",", 
+             "nbBasename"}], "}"}], "]"}], "<>", "\"\<.md\>\""}]}], "}"}], 
+       "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Put", "@", "mdFile"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"fd", "=", 
+      RowBox[{"OpenAppend", "[", 
+       RowBox[{"mdFile", ",", 
+        RowBox[{"PageWidth", "\[Rule]", "Infinity"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"WriteString", "[", 
+      RowBox[{"fd", ",", "\"\<---\\n\>\""}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"WriteString", "[", 
+      RowBox[{"fd", ",", "\"\<layout: post\\n\>\""}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"WriteString", "[", 
+      RowBox[{"fd", ",", 
+       RowBox[{
+       "\"\<title: \\\"\>\"", "<>", "postTitle", "<>", "\"\<\\\"\\n\>\""}]}], 
+      "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"outputCellImageFiles", "=", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"FileNameJoin", "[", 
+         RowBox[{"{", 
+          RowBox[{"jekyllDir", ",", "relativeImageDir", ",", 
+           RowBox[{"imageName", "[", 
+            RowBox[{"#", ",", "nbBasename"}], "]"}]}], "}"}], "]"}], "&"}], "/@", 
+       RowBox[{"Flatten", "@", 
+        RowBox[{"Position", "[", 
+         RowBox[{"cells", ",", 
+          RowBox[{"Cell", "[", 
+           RowBox[{"_", ",", "\"\<Output\>\"", ",", "__"}], "]"}]}], 
+         "]"}]}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{
+       RowBox[{
+       "find", " ", "the", " ", "best", " ", "output", " ", "cell", " ", "to",
+         " ", "use", " ", "as", " ", "a", " ", "cover", " ", "image"}], " ", 
+       "..."}], " ", "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"Print", "[", "\"\<finding best cover image \>\"", "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Length", "@", "outputCellImageFiles"}], ">", "0"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"imageDimensions", "=", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"#", ",", 
+             RowBox[{"ImageDimensions", "@", 
+              RowBox[{"Import", "@", "#"}]}]}], "}"}], "&"}], "/@", 
+          "outputCellImageFiles"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "find", " ", "the", " ", "most", " ", "square", " ", "image", " ", 
+          "with", " ", "at", " ", "least", " ", "100", "px", " ", "on", " ", 
+          "a", " ", 
+          RowBox[{"side", ":"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"coverImageFile", "=", 
+         RowBox[{"Take", "[", 
+          RowBox[{
+           RowBox[{"SortBy", "[", 
+            RowBox[{
+             RowBox[{"Select", "[", 
+              RowBox[{"imageDimensions", ",", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"#", "[", 
+                   RowBox[{"[", 
+                    RowBox[{"2", ",", "1"}], "]"}], "]"}], "\[GreaterEqual]", 
+                  "100"}], "||", 
+                 RowBox[{
+                  RowBox[{"#", "[", 
+                   RowBox[{"[", 
+                    RowBox[{"2", ",", "2"}], "]"}], "]"}], "\[GreaterEqual]", 
+                  "100"}]}], "&"}]}], "]"}], ",", 
+             RowBox[{
+              RowBox[{"Abs", "@", 
+               RowBox[{"Differences", "@", 
+                RowBox[{"#", "[", 
+                 RowBox[{"[", "2", "]"}], "]"}]}]}], "&"}]}], "]"}], ",", 
+           RowBox[{"UpTo", "[", "1", "]"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"MatchQ", "[", 
+           RowBox[{"coverImageFile", ",", 
+            RowBox[{"{", 
+             RowBox[{"{", 
+              RowBox[{"_String", ",", 
+               RowBox[{"{", 
+                RowBox[{"_Integer", ",", "_Integer"}], "}"}]}], "}"}], 
+             "}"}]}], "]"}], ",", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"coverImageFile", "=", 
+            RowBox[{"coverImageFile", "[", 
+             RowBox[{"[", 
+              RowBox[{"1", ",", "1"}], "]"}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"(*", " ", 
+            RowBox[{
+            "write", " ", "final", " ", "md", " ", "file", " ", "with", " ", 
+             "yaml", " ", "front", " ", 
+             RowBox[{"matter", ":"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+           RowBox[{"coverImageRelativePath", "=", 
+            RowBox[{"FileNameJoin", "[", 
+             RowBox[{"{", 
+              RowBox[{"relativeImageDir", ",", 
+               RowBox[{"FileNameTake", "[", 
+                RowBox[{"coverImageFile", ",", 
+                 RowBox[{"-", "1"}]}], "]"}]}], "}"}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"WriteString", "[", 
+            RowBox[{"fd", ",", 
+             RowBox[{
+             "\"\<gif: \>\"", "<>", "coverImageRelativePath", "<>", 
+              "\"\<\\n\>\""}]}], "]"}], ";"}]}], "\[IndentingNewLine]", "]"}],
+         ";"}]}], "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"WriteString", "[", 
+      RowBox[{"fd", ",", 
+       RowBox[{"\"\<date: \>\"", "<>", 
+        RowBox[{"DateString", "[", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<Year\>\"", ",", "\"\<-\>\"", ",", "\"\<Month\>\"", ",", 
+           "\"\<-\>\"", ",", "\"\<Day\>\""}], "}"}], "]"}], "<>", 
+        "\"\<\\n\>\""}]}], "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"WriteString", "[", 
+      RowBox[{"fd", ",", "\"\<---\\n\\n\>\""}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"fdTmp", "=", 
+      RowBox[{"OpenRead", "[", "mdFileTmp", "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"SetStreamPosition", "[", 
+      RowBox[{"fdTmp", ",", "0"}], "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"While", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"line", "=", 
+          RowBox[{"ReadLine", "[", "fdTmp", "]"}]}], ")"}], "=!=", 
+        "EndOfFile"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"WriteString", "[", 
+         RowBox[{"fd", ",", 
+          RowBox[{"line", "<>", "\"\<\\n\\n\>\""}]}], "]"}], ";"}]}], 
+      "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Close", "[", "fdTmp", "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Close", "[", "fd", "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"DeleteFile", "[", "mdFileTmp", "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Print", "[", "mdFile", "]"}], ";", "\[IndentingNewLine]", 
+     "mdFile"}]}], "\[IndentingNewLine]", "]"}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.6958246905737457`*^9, 3.6958252561244392`*^9}, {
+   3.69582533959496*^9, 3.695825365891069*^9}, {3.696589173005165*^9, 
+   3.6965891896151123`*^9}, {3.696589230021639*^9, 3.696589291801361*^9}, {
+   3.696589530702688*^9, 3.696589579023102*^9}, {3.696589616074802*^9, 
+   3.696589629644041*^9}, 3.69658971109221*^9, {3.696589743857181*^9, 
+   3.6965897451830482`*^9}, {3.696603533291712*^9, 3.696603569138241*^9}, {
+   3.696604077365397*^9, 3.6966041431300907`*^9}, {3.6966042320895557`*^9, 
+   3.696604406456008*^9}, 3.6966046444611683`*^9, {3.696604690319772*^9, 
+   3.696604700747422*^9}, {3.69660497950226*^9, 3.696604979756949*^9}, {
+   3.696606416119254*^9, 3.696606430487918*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Differences", "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "2"}], "}"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6965896437945843`*^9, 3.6965896489784317`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", "1", "}"}]], "Output",
+ CellChangeTimes->{3.696589652169059*^9}]
+}, Open  ]],
+
+Cell[BoxData["SortBy"], "Input",
+ CellChangeTimes->{{3.696589778471862*^9, 3.6965897793629923`*^9}}]
+},
+WindowSize->{1146, 855},
+WindowMargins->{{19, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 405, 9, 48, "Input",
+ InitializationCell->True],
+Cell[966, 31, 3678, 74, 280, "Input",
+ InitializationCell->True],
+Cell[4647, 107, 1187, 22, 70, "Input",
+ InitializationCell->True],
+Cell[5837, 131, 1151, 22, 70, "Input",
+ InitializationCell->True],
+Cell[6991, 155, 1134, 22, 70, "Input",
+ InitializationCell->True],
+Cell[8128, 179, 1132, 22, 70, "Input",
+ InitializationCell->True],
+Cell[9263, 203, 12725, 291, 1309, "Input",
+ InitializationCell->True],
+Cell[CellGroupData[{
+Cell[22013, 498, 181, 4, 32, "Input"],
+Cell[22197, 504, 92, 2, 32, "Output"]
+}, Open  ]],
+Cell[22304, 509, 100, 1, 32, "Input"]
+}
+]
+*)
+

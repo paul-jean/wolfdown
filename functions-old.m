@@ -50,7 +50,6 @@ nbObject=NotebookOpen[nbFile,Visible->False];
 nbExpr=NotebookGet[nbObject];
 cells=Cases[nbExpr,Cell[_,"Input"|"Output"|"Text"|"Section"|"Subsection"|"Subsubsection",__],Infinity];
 numCells=Length@cells;
-Quiet[Close/@Streams[]];
 Put@mdFileTmp;
 fd=OpenAppend[mdFileTmp,PageWidth->Infinity];
 (* export each cell to the .md file and the image files: *)
@@ -59,26 +58,21 @@ exportCell[#,#2[[1]],screenWidth,nbBasename,jekyllDir,relativeImageDir,fd]&,
 cells
 ];
 Close[fd];
+(* find the best cover image: *)
+outputCellImageFiles=FileNameJoin[{jekyllDir,relativeImageDir,imageName[#,nbBasename]}]&/@Flatten@Position[cells,Cell[_,"Output",__]];
+imageDimensions={#,ImageDimensions@Import@#}&/@outputCellImageFiles;
+numPixels=Times@@#[[2]]&/@imageDimensions;
+maxNumPixels=Max@numPixels;
+coverImageFile=Extract[outputCellImageFiles,Position[numPixels,maxNumPixels]][[1]];
+(* write final md file with yaml front matter: *)
+coverImageRelativePath=FileNameJoin[{relativeImageDir,FileNameTake[coverImageFile,-1]}];
 mdFile=FileNameJoin[{mdFileDir,DateString[{"Year","-","Month","-","Day","-",nbBasename}]<>".md"}];
 Put@mdFile;
 fd=OpenAppend[mdFile,PageWidth->Infinity];
 WriteString[fd,"---\n"];
 WriteString[fd,"layout: post\n"];
 WriteString[fd,"title: \""<>postTitle<>"\"\n"];
-outputCellImageFiles=FileNameJoin[{jekyllDir,relativeImageDir,imageName[#,nbBasename]}]&/@Flatten@Position[cells,Cell[_,"Output",__]];
-(* find the best output cell to use as a cover image ... *)
-Print["finding best cover image "];
-If[Length@outputCellImageFiles>0,
-imageDimensions={#,ImageDimensions@Import@#}&/@outputCellImageFiles;
-(* find the most square image with at least 100px on a side: *)
-coverImageFile=Take[SortBy[Select[imageDimensions,#[[2,1]]>=100||#[[2,2]]>=100&],Abs@Differences@#[[2]]&],UpTo[1]];
-If[MatchQ[coverImageFile,{{_String,{_Integer,_Integer}}}],
-coverImageFile=coverImageFile[[1,1]];
-(* write final md file with yaml front matter: *)
-coverImageRelativePath=FileNameJoin[{relativeImageDir,FileNameTake[coverImageFile,-1]}];
 WriteString[fd,"gif: "<>coverImageRelativePath<>"\n"];
-];
-];
 WriteString[fd,"date: "<>DateString[{"Year","-","Month","-","Day"}]<>"\n"];
 WriteString[fd,"---\n\n"];
 fdTmp=OpenRead[mdFileTmp];
@@ -89,14 +83,5 @@ WriteString[fd,line<>"\n\n"];
 Close[fdTmp];
 Close[fd];
 DeleteFile[mdFileTmp];
-Print[mdFile];
 mdFile
 ]
-
-
-(* ::Input:: *)
-(*Differences[{1,2}]*)
-
-
-(* ::Input:: *)
-(*SortBy*)
