@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     23244,        544]
-NotebookOptionsPosition[     22408,        512]
-NotebookOutlinePosition[     22767,        528]
-CellTagsIndexPosition[     22724,        525]
+NotebookDataLength[     23149,        541]
+NotebookOptionsPosition[     22313,        509]
+NotebookOutlinePosition[     22672,        525]
+CellTagsIndexPosition[     22629,        522]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -290,9 +290,6 @@ Cell[BoxData[
        "]"}]}], ";", "\[IndentingNewLine]", 
      RowBox[{"numCells", "=", 
       RowBox[{"Length", "@", "cells"}]}], ";", "\[IndentingNewLine]", 
-     RowBox[{"Quiet", "[", 
-      RowBox[{"Close", "/@", 
-       RowBox[{"Streams", "[", "]"}]}], "]"}], ";", "\[IndentingNewLine]", 
      RowBox[{"Put", "@", "mdFileTmp"}], ";", "\[IndentingNewLine]", 
      RowBox[{"fd", "=", 
       RowBox[{"OpenAppend", "[", 
@@ -364,8 +361,6 @@ Cell[BoxData[
        "find", " ", "the", " ", "best", " ", "output", " ", "cell", " ", "to",
          " ", "use", " ", "as", " ", "a", " ", "cover", " ", "image"}], " ", 
        "..."}], " ", "*)"}], "\[IndentingNewLine]", 
-     RowBox[{"Print", "[", "\"\<finding best cover image \>\"", "]"}], ";", 
-     "\[IndentingNewLine]", 
      RowBox[{"If", "[", 
       RowBox[{
        RowBox[{
@@ -479,9 +474,8 @@ Cell[BoxData[
      RowBox[{"Close", "[", "fdTmp", "]"}], ";", "\[IndentingNewLine]", 
      RowBox[{"Close", "[", "fd", "]"}], ";", "\[IndentingNewLine]", 
      RowBox[{"DeleteFile", "[", "mdFileTmp", "]"}], ";", 
-     "\[IndentingNewLine]", 
-     RowBox[{"Print", "[", "mdFile", "]"}], ";", "\[IndentingNewLine]", 
-     "mdFile"}]}], "\[IndentingNewLine]", "]"}]}]], "Input",
+     "\[IndentingNewLine]", "mdFile"}]}], "\[IndentingNewLine]", 
+   "]"}]}]], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.6958246905737457`*^9, 3.6958252561244392`*^9}, {
    3.69582533959496*^9, 3.695825365891069*^9}, {3.696589173005165*^9, 
@@ -492,7 +486,10 @@ Cell[BoxData[
    3.696604077365397*^9, 3.6966041431300907`*^9}, {3.6966042320895557`*^9, 
    3.696604406456008*^9}, 3.6966046444611683`*^9, {3.696604690319772*^9, 
    3.696604700747422*^9}, {3.69660497950226*^9, 3.696604979756949*^9}, {
-   3.696606416119254*^9, 3.696606430487918*^9}}],
+   3.696606416119254*^9, 3.696606430487918*^9}, {3.696727535480867*^9, 
+   3.696727535951523*^9}, {3.696727592947975*^9, 3.696727593388212*^9}, {
+   3.6967276288747063`*^9, 3.696727634481529*^9}, 3.696727683373723*^9, {
+   3.696727744541998*^9, 3.696727746200884*^9}}],
 
 Cell[CellGroupData[{
 
@@ -539,13 +536,13 @@ Cell[6991, 155, 1134, 22, 70, "Input",
  InitializationCell->True],
 Cell[8128, 179, 1132, 22, 70, "Input",
  InitializationCell->True],
-Cell[9263, 203, 12725, 291, 1309, "Input",
+Cell[9263, 203, 12630, 288, 1246, "Input",
  InitializationCell->True],
 Cell[CellGroupData[{
-Cell[22013, 498, 181, 4, 32, "Input"],
-Cell[22197, 504, 92, 2, 32, "Output"]
+Cell[21918, 495, 181, 4, 32, "Input"],
+Cell[22102, 501, 92, 2, 32, "Output"]
 }, Open  ]],
-Cell[22304, 509, 100, 1, 32, "Input"]
+Cell[22209, 506, 100, 1, 32, "Input"]
 }
 ]
 *)

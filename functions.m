@@ -50,7 +50,6 @@ nbObject=NotebookOpen[nbFile,Visible->False];
 nbExpr=NotebookGet[nbObject];
 cells=Cases[nbExpr,Cell[_,"Input"|"Output"|"Text"|"Section"|"Subsection"|"Subsubsection",__],Infinity];
 numCells=Length@cells;
-Quiet[Close/@Streams[]];
 Put@mdFileTmp;
 fd=OpenAppend[mdFileTmp,PageWidth->Infinity];
 (* export each cell to the .md file and the image files: *)
@@ -67,7 +66,6 @@ WriteString[fd,"layout: post\n"];
 WriteString[fd,"title: \""<>postTitle<>"\"\n"];
 outputCellImageFiles=FileNameJoin[{jekyllDir,relativeImageDir,imageName[#,nbBasename]}]&/@Flatten@Position[cells,Cell[_,"Output",__]];
 (* find the best output cell to use as a cover image ... *)
-Print["finding best cover image "];
 If[Length@outputCellImageFiles>0,
 imageDimensions={#,ImageDimensions@Import@#}&/@outputCellImageFiles;
 (* find the most square image with at least 100px on a side: *)
@@ -89,7 +87,6 @@ WriteString[fd,line<>"\n\n"];
 Close[fdTmp];
 Close[fd];
 DeleteFile[mdFileTmp];
-Print[mdFile];
 mdFile
 ]
 
