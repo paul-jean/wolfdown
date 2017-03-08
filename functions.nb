@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     23149,        541]
-NotebookOptionsPosition[     22313,        509]
-NotebookOutlinePosition[     22672,        525]
-CellTagsIndexPosition[     22629,        522]
+NotebookDataLength[     26330,        611]
+NotebookOptionsPosition[     25494,        579]
+NotebookOutlinePosition[     25853,        595]
+CellTagsIndexPosition[     25810,        592]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -216,8 +216,31 @@ Cell[BoxData[
       "numCells", ",", "fd", ",", "outputCellImageFiles", ",", 
       "imageDimensions", ",", "numPixels", ",", "maxNumPixels", ",", 
       "coverImageFile", ",", "coverImageRelativePath", ",", "mdFile", ",", 
-      "fdTmp", ",", "line"}], "}"}], ",", "\[IndentingNewLine]", 
+      "fdTmp", ",", "line", ",", "stderr"}], "}"}], ",", 
+    "\[IndentingNewLine]", 
     RowBox[{
+     RowBox[{"stderr", "=", 
+      RowBox[{"Streams", "[", "\"\<stderr\>\"", "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"WriteString", "[", 
+      RowBox[{"stderr", ",", "\"\<\\n\\n\>\""}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"WriteString", "[", 
+      RowBox[{"stderr", ",", 
+       RowBox[{
+       "\"\<[exportNotebook] Exporting file \>\"", "<>", "nbFile", "<>", 
+        "\"\< to jekyll directory \>\"", "<>", "jekyllDir", "<>", 
+        "\"\<\\n\>\""}]}], "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"WriteString", "[", 
+      RowBox[{"stderr", ",", 
+       RowBox[{"\"\<[exportNotebook] Screen width: \>\"", "<>", 
+        RowBox[{"IntegerString", "@", "screenWidth"}], "<>", 
+        "\"\<\\n\>\""}]}], "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"WriteString", "[", 
+      RowBox[{"stderr", ",", 
+       RowBox[{
+       "\"\<[exportNotebook] Post title: \>\"", "<>", "postTitle", "<>", 
+        "\"\<\\n\>\""}]}], "]"}], ";", "\[IndentingNewLine]", 
      RowBox[{"nbBasename", "=", 
       RowBox[{"FileBaseName", "@", "nbFile"}]}], ";", "\[IndentingNewLine]", 
      RowBox[{"relativeImageDir", "=", 
@@ -290,6 +313,12 @@ Cell[BoxData[
        "]"}]}], ";", "\[IndentingNewLine]", 
      RowBox[{"numCells", "=", 
       RowBox[{"Length", "@", "cells"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"WriteString", "[", 
+      RowBox[{"stderr", ",", 
+       RowBox[{"\"\<[exportNotebook] Found \>\"", "<>", 
+        RowBox[{"IntegerString", "@", "numCells"}], "<>", 
+        "\"\< cells to export\\n\>\""}]}], "]"}], ";", "\[IndentingNewLine]", 
+     
      RowBox[{"Put", "@", "mdFileTmp"}], ";", "\[IndentingNewLine]", 
      RowBox[{"fd", "=", 
       RowBox[{"OpenAppend", "[", 
@@ -304,13 +333,33 @@ Cell[BoxData[
      RowBox[{"MapIndexed", "[", "\[IndentingNewLine]", 
       RowBox[{
        RowBox[{
-        RowBox[{"exportCell", "[", 
-         RowBox[{"#", ",", 
-          RowBox[{"#2", "[", 
-           RowBox[{"[", "1", "]"}], "]"}], ",", "screenWidth", ",", 
-          "nbBasename", ",", "jekyllDir", ",", "relativeImageDir", ",", 
-          "fd"}], "]"}], "&"}], ",", "\[IndentingNewLine]", "cells"}], 
-      "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"With", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"i", "=", 
+            RowBox[{"#2", "[", 
+             RowBox[{"[", "1", "]"}], "]"}]}], "}"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"exportCell", "[", 
+            RowBox[{
+            "#", ",", "i", ",", "screenWidth", ",", "nbBasename", ",", 
+             "jekyllDir", ",", "relativeImageDir", ",", "fd"}], "]"}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Mod", "[", 
+               RowBox[{"i", ",", "10"}], "]"}], "\[Equal]", "0"}], ",", 
+             "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"WriteString", "[", 
+               RowBox[{"stderr", ",", 
+                RowBox[{"\"\<[exportNotebook] Cell number \>\"", "<>", 
+                 RowBox[{"IntegerString", "@", "i"}], "<>", "\"\<\\n\>\""}]}],
+                "]"}], ";"}]}], "\[IndentingNewLine]", "]"}], ";"}]}], 
+         "\[IndentingNewLine]", "]"}], "&"}], ",", "\[IndentingNewLine]", 
+       "cells"}], "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
      RowBox[{"Close", "[", "fd", "]"}], ";", "\[IndentingNewLine]", 
      RowBox[{"mdFile", "=", 
       RowBox[{"FileNameJoin", "[", 
@@ -423,6 +472,12 @@ Cell[BoxData[
              RowBox[{"[", 
               RowBox[{"1", ",", "1"}], "]"}], "]"}]}], ";", 
            "\[IndentingNewLine]", 
+           RowBox[{"WriteString", "[", 
+            RowBox[{"stderr", ",", 
+             RowBox[{
+             "\"\<[exportNotebook] Using cover image file \>\"", "<>", 
+              "coverImageFile", "<>", "\"\<\\n\>\""}]}], "]"}], ";", 
+           "\[IndentingNewLine]", 
            RowBox[{"(*", " ", 
             RowBox[{
             "write", " ", "final", " ", "md", " ", "file", " ", "with", " ", 
@@ -474,7 +529,16 @@ Cell[BoxData[
      RowBox[{"Close", "[", "fdTmp", "]"}], ";", "\[IndentingNewLine]", 
      RowBox[{"Close", "[", "fd", "]"}], ";", "\[IndentingNewLine]", 
      RowBox[{"DeleteFile", "[", "mdFileTmp", "]"}], ";", 
-     "\[IndentingNewLine]", "mdFile"}]}], "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{"WriteString", "[", 
+      RowBox[{"stderr", ",", 
+       RowBox[{
+       "\"\<[exportNotebook] Finished writing markdown file: \>\"", "<>", 
+        "mdFile", "<>", "\"\<\\n\>\""}]}], "]"}], ";", "\[IndentingNewLine]", 
+     
+     RowBox[{"WriteString", "[", 
+      RowBox[{"stderr", ",", "\"\<[exportNotebook] Done.\\n\>\""}], "]"}], 
+     ";", "\[IndentingNewLine]", "mdFile"}]}], "\[IndentingNewLine]", 
    "]"}]}]], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.6958246905737457`*^9, 3.6958252561244392`*^9}, {
@@ -489,7 +553,13 @@ Cell[BoxData[
    3.696606416119254*^9, 3.696606430487918*^9}, {3.696727535480867*^9, 
    3.696727535951523*^9}, {3.696727592947975*^9, 3.696727593388212*^9}, {
    3.6967276288747063`*^9, 3.696727634481529*^9}, 3.696727683373723*^9, {
-   3.696727744541998*^9, 3.696727746200884*^9}}],
+   3.696727744541998*^9, 3.696727746200884*^9}, {3.697931354871641*^9, 
+   3.697931369632309*^9}, {3.697931438526101*^9, 3.6979316194161167`*^9}, {
+   3.697931664183823*^9, 3.69793168882086*^9}, {3.697931727926762*^9, 
+   3.697931749863277*^9}, 3.697931837548759*^9, {3.697931943637163*^9, 
+   3.69793207546487*^9}, {3.6979322234732723`*^9, 3.697932336017064*^9}, {
+   3.697932368215845*^9, 3.6979324034737253`*^9}, {3.697932438259499*^9, 
+   3.6979324521867123`*^9}}],
 
 Cell[CellGroupData[{
 
@@ -536,13 +606,13 @@ Cell[6991, 155, 1134, 22, 70, "Input",
  InitializationCell->True],
 Cell[8128, 179, 1132, 22, 70, "Input",
  InitializationCell->True],
-Cell[9263, 203, 12630, 288, 1246, "Input",
+Cell[9263, 203, 15811, 358, 1540, "Input",
  InitializationCell->True],
 Cell[CellGroupData[{
-Cell[21918, 495, 181, 4, 32, "Input"],
-Cell[22102, 501, 92, 2, 32, "Output"]
+Cell[25099, 565, 181, 4, 32, "Input"],
+Cell[25283, 571, 92, 2, 32, "Output"]
 }, Open  ]],
-Cell[22209, 506, 100, 1, 32, "Input"]
+Cell[25390, 576, 100, 1, 32, "Input"]
 }
 ]
 *)

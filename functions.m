@@ -35,7 +35,12 @@ exportCell[cell:Cell[text_String,"Subsubsection",__],cellIndex_Integer,pageWidth
 
 (* ::Input::Initialization:: *)
 exportNotebook[nbFile_String,jekyllDir_String,screenWidth_Integer,postTitle_String]:=Module[
-{nbBasename,relativeImageDir,mdFileDir,mdFileTmp,nbObject,nbExpr,cells,numCells,fd,outputCellImageFiles,imageDimensions,numPixels,maxNumPixels,coverImageFile,coverImageRelativePath,mdFile,fdTmp,line},
+{nbBasename,relativeImageDir,mdFileDir,mdFileTmp,nbObject,nbExpr,cells,numCells,fd,outputCellImageFiles,imageDimensions,numPixels,maxNumPixels,coverImageFile,coverImageRelativePath,mdFile,fdTmp,line,stderr},
+stderr=Streams["stderr"];
+WriteString[stderr,"\n\n"];
+WriteString[stderr,"[exportNotebook] Exporting file "<>nbFile<>" to jekyll directory "<>jekyllDir<>"\n"];
+WriteString[stderr,"[exportNotebook] Screen width: "<>IntegerString@screenWidth<>"\n"];
+WriteString[stderr,"[exportNotebook] Post title: "<>postTitle<>"\n"];
 nbBasename=FileBaseName@nbFile;
 relativeImageDir=FileNameJoin[{"assets",DateString[{"Year"}],DateString[{"Month"}],DateString[{"Day"}],nbBasename<>"-"<>IntegerString@screenWidth<>"px"}];
 mdFileDir=FileNameJoin[{jekyllDir,"_posts"}];
@@ -50,11 +55,17 @@ nbObject=NotebookOpen[nbFile,Visible->False];
 nbExpr=NotebookGet[nbObject];
 cells=Cases[nbExpr,Cell[_,"Input"|"Output"|"Text"|"Section"|"Subsection"|"Subsubsection",__],Infinity];
 numCells=Length@cells;
+WriteString[stderr,"[exportNotebook] Found "<>IntegerString@numCells<>" cells to export\n"];
 Put@mdFileTmp;
 fd=OpenAppend[mdFileTmp,PageWidth->Infinity];
 (* export each cell to the .md file and the image files: *)
 MapIndexed[
-exportCell[#,#2[[1]],screenWidth,nbBasename,jekyllDir,relativeImageDir,fd]&,
+With[{i=#2[[1]]},
+exportCell[#,i,screenWidth,nbBasename,jekyllDir,relativeImageDir,fd];
+If[Mod[i,10]==0,
+WriteString[stderr,"[exportNotebook] Cell number "<>IntegerString@i<>"\n"];
+];
+]&,
 cells
 ];
 Close[fd];
@@ -72,6 +83,7 @@ imageDimensions={#,ImageDimensions@Import@#}&/@outputCellImageFiles;
 coverImageFile=Take[SortBy[Select[imageDimensions,#[[2,1]]>=100||#[[2,2]]>=100&],Abs@Differences@#[[2]]&],UpTo[1]];
 If[MatchQ[coverImageFile,{{_String,{_Integer,_Integer}}}],
 coverImageFile=coverImageFile[[1,1]];
+WriteString[stderr,"[exportNotebook] Using cover image file "<>coverImageFile<>"\n"];
 (* write final md file with yaml front matter: *)
 coverImageRelativePath=FileNameJoin[{relativeImageDir,FileNameTake[coverImageFile,-1]}];
 WriteString[fd,"gif: "<>coverImageRelativePath<>"\n"];
@@ -87,6 +99,8 @@ WriteString[fd,line<>"\n\n"];
 Close[fdTmp];
 Close[fd];
 DeleteFile[mdFileTmp];
+WriteString[stderr,"[exportNotebook] Finished writing markdown file: "<>mdFile<>"\n"];
+WriteString[stderr,"[exportNotebook] Done.\n"];
 mdFile
 ]
 
