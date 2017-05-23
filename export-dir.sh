@@ -8,8 +8,8 @@ device_width=$3
 
 for nb in `ls -1 $nb_dir/*.nb`; do
     echo "exporting $nb ..."
-    echo "./jekyllwolf.sh $nb $jekyll_dir $device_width"
-    ./jekyllwolf.sh $nb $jekyll_dir $device_width
+    echo "./wolfdown.sh $nb $jekyll_dir $device_width"
+    ./wolfdown.sh $nb $jekyll_dir $device_width
 done
 
 exit 0

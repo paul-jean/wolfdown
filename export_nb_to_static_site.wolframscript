@@ -7,7 +7,7 @@ jekyllDir = args[[2]];
 screenWidth = FromDigits@args[[3]];
 postTitle = args[[4]];
 
-repoDir = "/Users/pauljean/code/jekyll-wolf/";
+repoDir = "/Users/pauljean/code/wolfdown/";
 Get@FileNameJoin[{repoDir, "functions.m"}];
 
 exportedHTMLFile = UsingFrontEnd@exportNotebook[nbFile, jekyllDir, screenWidth, postTitle];

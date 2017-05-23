@@ -8,7 +8,7 @@ cp -R ./example-blog ./$test_dir
 
 for nb in `ls -1 example-notebooks/*.nb`; do
     echo "exporting $nb ..."
-    ./jekyllwolf.sh $dir/$nb $dir/$test_dir/ 500
+    ./wolfdown.sh $dir/$nb $dir/$test_dir/ 500
 done
 
 echo "building the jekyll site ..."

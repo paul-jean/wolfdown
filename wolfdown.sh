@@ -1,12 +1,12 @@
 #! /bin/sh
 # Exports a Wolfram Language notebook (.nb) to a markdown document within a Jekyll site.
 # Usage:
-# jekyllwolf.sh nb_file jekyll_dir [device_width] [post_title]
+# wolfdown.sh nb_file jekyll_dir [device_width] [post_title]
 
 DEFAULT_DEVICE_WIDTH=600
 
 function usage {
-    echo "usage: jekyllwolf.sh nb_file jekyll_dir [device_width] [post_title]"
+    echo "usage: wolfdown.sh nb_file jekyll_dir [device_width] [post_title]"
     echo "nb_file: wolfram notebook file"
     echo "jekyll_dir: directory of the Jekyll site"
     echo "device_width (optional): image width for the exported image files (default: $DEFAULT_DEVICE_WIDTH px)"
