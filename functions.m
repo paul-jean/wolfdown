@@ -41,7 +41,7 @@ WriteString[stderr,"\n\n"];
 WriteString[stderr,"[exportNotebook] Exporting file "<>nbFile<>" to jekyll directory "<>jekyllDir<>"\n"];
 WriteString[stderr,"[exportNotebook] Screen width: "<>IntegerString@screenWidth<>"\n"];
 WriteString[stderr,"[exportNotebook] Post title: "<>postTitle<>"\n"];
-nbBasename=FileBaseName@nbFile;
+nbBasename=StringReplace[FileBaseName@nbFile," "->"-"];
 relativeImageDir=FileNameJoin[{"assets",DateString[{"Year"}],DateString[{"Month"}],DateString[{"Day"}],nbBasename<>"-"<>IntegerString@screenWidth<>"px"}];
 mdFileDir=FileNameJoin[{jekyllDir,"_posts"}];
 mdFileTmp=FileNameJoin[{mdFileDir,DateString[{"Year","-","Month","-","Day","-",nbBasename}]<>".md.tmp"}];
@@ -55,6 +55,10 @@ nbObject=NotebookOpen[nbFile,Visible->False];
 nbExpr=NotebookGet[nbObject];
 cells=Cases[nbExpr,Cell[_,"Input"|"Output"|"Text"|"Section"|"Subsection"|"Subsubsection",__],Infinity];
 numCells=Length@cells;
+If[numCells < 1,
+WriteString[stderr,"[exportNotebook] Nothing could be exported. Aborting ... \n"];
+Return["Failed"];
+];
 WriteString[stderr,"[exportNotebook] Found "<>IntegerString@numCells<>" cells to export\n"];
 Put@mdFileTmp;
 fd=OpenAppend[mdFileTmp,PageWidth->Infinity];
@@ -87,7 +91,7 @@ WriteString[stderr,"[exportNotebook] Using cover image file "<>coverImageFile<>"
 (* write final md file with yaml front matter: *)
 coverImageRelativePath=FileNameJoin[{relativeImageDir,FileNameTake[coverImageFile,-1]}];
 WriteString[fd,"gif: "<>coverImageRelativePath<>"\n"];
-];
+]
 ];
 WriteString[fd,"date: "<>DateString[{"Year","-","Month","-","Day"}]<>"\n"];
 WriteString[fd,"---\n\n"];
@@ -103,11 +107,3 @@ WriteString[stderr,"[exportNotebook] Finished writing markdown file: "<>mdFile<>
 WriteString[stderr,"[exportNotebook] Done.\n"];
 mdFile
 ]
-
-
-(* ::Input:: *)
-(*Differences[{1,2}]*)
-
-
-(* ::Input:: *)
-(*SortBy*)

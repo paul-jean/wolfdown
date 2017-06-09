@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     25764,        590]
-NotebookOptionsPosition[     25078,        563]
-NotebookOutlinePosition[     25437,        579]
-CellTagsIndexPosition[     25394,        576]
+NotebookDataLength[     26635,        609]
+NotebookOptionsPosition[     25949,        582]
+NotebookOutlinePosition[     26308,        598]
+CellTagsIndexPosition[     26265,        595]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -242,7 +242,11 @@ Cell[BoxData[
        "\"\<[exportNotebook] Post title: \>\"", "<>", "postTitle", "<>", 
         "\"\<\\n\>\""}]}], "]"}], ";", "\[IndentingNewLine]", 
      RowBox[{"nbBasename", "=", 
-      RowBox[{"FileBaseName", "@", "nbFile"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"StringReplace", "[", 
+       RowBox[{
+        RowBox[{"FileBaseName", "@", "nbFile"}], ",", 
+        RowBox[{"\"\< \>\"", "\[Rule]", "\"\<-\>\""}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
      RowBox[{"relativeImageDir", "=", 
       RowBox[{"FileNameJoin", "[", 
        RowBox[{"{", 
@@ -313,6 +317,17 @@ Cell[BoxData[
        "]"}]}], ";", "\[IndentingNewLine]", 
      RowBox[{"numCells", "=", 
       RowBox[{"Length", "@", "cells"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"numCells", " ", "<", " ", "1"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"WriteString", "[", 
+         RowBox[{
+         "stderr", ",", 
+          "\"\<[exportNotebook] Nothing could be exported. Aborting ... \\n\>\
+\""}], "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Return", "[", "\"\<Failed\>\"", "]"}], ";"}]}], 
+      "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
      RowBox[{"WriteString", "[", 
       RowBox[{"stderr", ",", 
        RowBox[{"\"\<[exportNotebook] Found \>\"", "<>", 
@@ -495,8 +510,9 @@ Cell[BoxData[
             RowBox[{"fd", ",", 
              RowBox[{
              "\"\<gif: \>\"", "<>", "coverImageRelativePath", "<>", 
-              "\"\<\\n\>\""}]}], "]"}], ";"}]}], "\[IndentingNewLine]", "]"}],
-         ";"}]}], "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+              "\"\<\\n\>\""}]}], "]"}], ";"}]}], "\[IndentingNewLine]", 
+         "]"}]}]}], "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+     
      RowBox[{"WriteString", "[", 
       RowBox[{"fd", ",", 
        RowBox[{"\"\<date: \>\"", "<>", 
@@ -559,10 +575,13 @@ Cell[BoxData[
    3.697931749863277*^9}, 3.697931837548759*^9, {3.697931943637163*^9, 
    3.69793207546487*^9}, {3.6979322234732723`*^9, 3.697932336017064*^9}, {
    3.697932368215845*^9, 3.6979324034737253`*^9}, {3.697932438259499*^9, 
-   3.6979324521867123`*^9}}]
+   3.6979324521867123`*^9}, {3.705066240981741*^9, 3.705066251425955*^9}, {
+   3.7050669308863163`*^9, 3.7050670107002068`*^9}, {3.705067768864296*^9, 
+   3.7050677737121153`*^9}, 3.7050678861910257`*^9, {3.70602996393886*^9, 
+   3.706030035591072*^9}, {3.706030088789069*^9, 3.706030099190526*^9}}]
 },
 WindowSize->{1146, 855},
-WindowMargins->{{19, Automatic}, {Automatic, 0}},
+WindowMargins->{{-2, Automatic}, {Automatic, 0}},
 FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
 21, 2016)",
 StyleDefinitions->"Default.nb"
@@ -590,7 +609,7 @@ Cell[6991, 155, 1134, 22, 70, "Input",
  InitializationCell->True],
 Cell[8128, 179, 1132, 22, 70, "Input",
  InitializationCell->True],
-Cell[9263, 203, 15811, 358, 1540, "Input",
+Cell[9263, 203, 16682, 377, 1624, "Input",
  InitializationCell->True]
 }
 ]

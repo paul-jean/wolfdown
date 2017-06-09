@@ -45,6 +45,13 @@ fi
 # export the notebook to html using the WolframScript interpreter:
 md_post_file=`$script_dir/export_nb_to_static_site.wolframscript $nb_file $jekyll_dir $device_width "$post_title"`
 
+# if no cells were found to export, abort:
+if [ "$md_post_file" = "Failed" ]
+then
+    echo "[wolfdown] No cells were found to export, aborting ..."
+    exit 1
+fi
+
 echo $md_post_file
 
 exit 0
