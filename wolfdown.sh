@@ -13,6 +13,8 @@ function usage {
     echo "post_title (optional): title of the Jekyll post (default: notebook file name)"
 }
 
+# TODO: use switches to parse device width and post title
+
 script_dir=`dirname $0`
 
 if [ $# -lt 2 ]
@@ -42,8 +44,26 @@ else
     post_title=`echo $nb_basename | sed 's|[_-]| |g'`
 fi
 
-# export the notebook to html using the WolframScript interpreter:
+# export the notebook to markdown using the WolframScript interpreter:
 md_post_file=`$script_dir/export_nb_to_static_site.wolframscript $nb_file $jekyll_dir $device_width "$post_title"`
+
+# reconstruct the name of the file the wolfram script wrote because it isn't
+# getting returned properly
+# TODO: figure out how to get the file name returned from the wolfram script
+curr_dir=$(pwd)
+jekyll_dir_full_path=$(cd "$jekyll_dir"; pwd)
+cd $curr_dir
+md_base_name="`date +"%Y-%m-%d"`-${nb_basename}.md"
+md_file_name="$jekyll_dir_full_path/_posts/${md_base_name}"
+
+# replace some common special characters from the wolfram exporter with ASCII equivalents:
+# TODO: look into exporting in wolfram script using CharacterEncoding->ASCII
+echo "[wolfdown] Replacing wolfram special chars with ASCII equivalents ..."
+sed -i.bak 's@\\\[OpenCurlyQuote\]@'\''@g' "$md_file_name"
+sed -i.bak 's@\\\[CloseCurlyQuote\]@'\''@g' "$md_file_name"
+sed -i.bak 's@\\\[OpenCurlyDoubleQuote\]@'\"'@g' "$md_file_name"
+sed -i.bak 's@\\\[CloseCurlyDoubleQuote\]@'\"'@g' "$md_file_name"
+echo "[wolfdown] Done replacing special chars."
 
 # if no cells were found to export, abort:
 if [ "$md_post_file" = "Failed" ]
@@ -52,7 +72,7 @@ then
     exit 1
 fi
 
-echo $md_post_file
+echo $md_file_name
 
 exit 0
 
