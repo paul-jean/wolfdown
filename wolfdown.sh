@@ -1,54 +1,77 @@
 #! /bin/sh
 # Exports a Wolfram Language notebook (.nb) to a markdown document within a Jekyll site.
-# Usage:
-# wolfdown.sh nb_file jekyll_dir [device_width] [post_title]
 
 DEFAULT_DEVICE_WIDTH=600
 
 function usage {
-    echo "usage: wolfdown.sh nb_file jekyll_dir [device_width] [post_title]"
-    echo "nb_file: wolfram notebook file"
-    echo "jekyll_dir: directory of the Jekyll site"
-    echo "device_width (optional): image width for the exported image files (default: $DEFAULT_DEVICE_WIDTH px)"
-    echo "post_title (optional): title of the Jekyll post (default: notebook file name)"
+    echo "usage: wolfdown.sh nb_file [-o jekyll_dir] [-w device_width] [-t post_title]"
+    echo "Converts wolfram notebook nb_file to markdown."
+    echo "The generated .md file and image asset files are written to the"
+    echo "current directory, unless the -o (output directory) option is specified."
+    echo "nb_file:         (required) wolfram notebook .nb file"
+    echo "-o jekyll_dir:   (Output directory, optional) directory of a Jekyll"
+    echo "                 site to write output files to (default: current directory)"
+    echo "-w device_width: (device Width, optional) image width for the"
+    echo "                 exported image files (default: $DEFAULT_DEVICE_WIDTH px)"
+    echo "-t post_title    (post Title, optional): title of the Jekyll post (default: notebook file name)"
+    echo "-h               Show this help message and exit."
 }
 
-# TODO: use switches to parse device width and post title
-
-script_dir=`dirname $0`
-
-if [ $# -lt 2 ]
-then
+# there should be at least one arg
+# wolfdown.sh nb_file -o ~/code/paul-jean.github.io
+if [[ $# -lt 1 ]]; then
     usage
     exit 1
 fi
 
-nb_file=$1
-jekyll_dir=$2
+# use getopts to parse command-line args
+OPTIND=1
+jekyll_dir=$(pwd)
+device_width=$DEFAULT_DEVICE_WIDTH
+post_title=$(echo $nb_basename | sed 's|[_-]| |g')
+while getopts ":o:w:t:h" opt; do
+    case "$opt" in
+    # wolfdown.sh -h
+    h)
+        usage
+        exit 0
+        ;;
+    # wolfdown.sh nb_file -o ~/code/paul-jean.github.io
+    o) $jekyll_dir=$OPTARG ;;
+    # wolfdown.sh nb_file -o ~/code/paul-jean.github.io -w 500
+    w) $device_width=$OPTARG ;;
+    # wolfdown.sh nb_file -o ~/code/paul-jean.github.io -w 500 -t "title"
+    t) $post_title=$OPTARG ;;
+    :) echo "[wolfdown] Option -$OPTARG requires an argument." >&2; exit 1 ;;
+    # wolfdown.sh nb_file -z invalid_stuff
+    \?) echo "[wolfdown] Invalid option: -$OPTARG" >&2; exit 1 ;;
+    esac
+done
 
-# if the device width isn't provided, use a default device width
-if [ ! -z "$3" ]
-then
-    device_width=$3
+# if the first arg was an option, get the nb file after the options
+if [[ $1 == -* ]]; then
+    shift $(($OPTIND - 1))
+fi
+# otherwise the nb arg must be the first arg
+if [ ! -z "$1" ]; then
+    nb_file="$1"
 else
-    device_width=$DEFAULT_DEVICE_WIDTH
+    echo "[wolfdown] Error: The nb_file is required!"
+    usage
+    exit 1
 fi
 
+# note: embedding the nb file between optional args like this is not supported:
+# wolfdown.sh -o jekyll_dir nb_file -w 500
+
+script_dir=`dirname $0`
 nb_basename=`basename $nb_file .nb`
-
-# if the post title isn't provided, use the notebook file name as the title:
-if [ ! -z "$4" ]
-then
-    post_title=$4
-else
-    post_title=`echo $nb_basename | sed 's|[_-]| |g'`
-fi
 
 # export the notebook to markdown using the WolframScript interpreter:
 md_post_file=`$script_dir/export_nb_to_static_site.wolframscript $nb_file $jekyll_dir $device_width "$post_title"`
 
 # reconstruct the name of the file the wolfram script wrote because it isn't
-# getting returned properly
+# getting returned properly from the wolfram script
 # TODO: figure out how to get the file name returned from the wolfram script
 curr_dir=$(pwd)
 jekyll_dir_full_path=$(cd "$jekyll_dir"; pwd)
