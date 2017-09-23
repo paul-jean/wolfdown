@@ -63,6 +63,10 @@ sed -i.bak 's@\\\[OpenCurlyQuote\]@'\''@g' "$md_file_name"
 sed -i.bak 's@\\\[CloseCurlyQuote\]@'\''@g' "$md_file_name"
 sed -i.bak 's@\\\[OpenCurlyDoubleQuote\]@'\"'@g' "$md_file_name"
 sed -i.bak 's@\\\[CloseCurlyDoubleQuote\]@'\"'@g' "$md_file_name"
+if [ ! -z "${md_file_name}.bak" ]
+then
+    rm "${md_file_name}.bak"
+fi
 echo "[wolfdown] Done replacing special chars."
 
 # if no cells were found to export, abort:
