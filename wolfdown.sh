@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/sh -x
 # Exports a Wolfram Language notebook (.nb) to a markdown document within a Jekyll site.
 
 DEFAULT_DEVICE_WIDTH=600
@@ -24,48 +24,56 @@ if [[ $# -lt 1 ]]; then
     exit 1
 fi
 
+nb_file="$1"
+
 # use getopts to parse command-line args
-OPTIND=1
-jekyll_dir=$(pwd)
-device_width=$DEFAULT_DEVICE_WIDTH
-post_title=$(echo $nb_basename | sed 's|[_-]| |g')
+OPTIND=2
 while getopts ":o:w:t:h" opt; do
-    case "$opt" in
+    case ${opt} in
     # wolfdown.sh -h
-    h)
+    h )
         usage
         exit 0
         ;;
     # wolfdown.sh nb_file -o ~/code/paul-jean.github.io
-    o) $jekyll_dir=$OPTARG ;;
+    o )
+        echo "[debug] processing option -o ..."
+        echo "[debug] $OPTARG ..."
+        jekyll_dir=$OPTARG ;;
     # wolfdown.sh nb_file -o ~/code/paul-jean.github.io -w 500
-    w) $device_width=$OPTARG ;;
+    w ) device_width=$OPTARG ;;
     # wolfdown.sh nb_file -o ~/code/paul-jean.github.io -w 500 -t "title"
-    t) $post_title=$OPTARG ;;
-    :) echo "[wolfdown] Option -$OPTARG requires an argument." >&2; exit 1 ;;
+    t ) post_title=$OPTARG ;;
+    : ) echo "[wolfdown] Option -$OPTARG requires an argument." >&2; exit 1 ;;
     # wolfdown.sh nb_file -z invalid_stuff
-    \?) echo "[wolfdown] Invalid option: -$OPTARG" >&2; exit 1 ;;
+    \? ) echo "[wolfdown] Invalid option: -$OPTARG" >&2; exit 1 ;;
     esac
 done
 
-# if the first arg was an option, get the nb file after the options
-if [[ $1 == -* ]]; then
-    shift $(($OPTIND - 1))
-fi
-# otherwise the nb arg must be the first arg
-if [ ! -z "$1" ]; then
-    nb_file="$1"
-else
-    echo "[wolfdown] Error: The nb_file is required!"
-    usage
-    exit 1
-fi
-
-# note: embedding the nb file between optional args like this is not supported:
-# wolfdown.sh -o jekyll_dir nb_file -w 500
+shift $(($OPTIND - 1))
 
 script_dir=`dirname $0`
 nb_basename=`basename $nb_file .nb`
+
+if [ -z "$jekyll_dir" ]
+then
+    jekyll_dir=$(pwd)
+fi
+
+if [ -z "$device_width" ]
+then
+    device_width=$DEFAULT_DEVICE_WIDTH
+fi
+
+if [ -z "$post_title" ]
+then
+    post_title=$(echo $nb_basename | sed 's|[_-]| |g')
+fi
+
+echo "[wolfdown] jekyll dir set to: $jekyll_dir"
+
+# note: embedding the nb file between optional args like this is not supported:
+# wolfdown.sh -o jekyll_dir nb_file -w 500
 
 # export the notebook to markdown using the WolframScript interpreter:
 md_post_file=`$script_dir/export_nb_to_static_site.wolframscript $nb_file $jekyll_dir $device_width "$post_title"`
